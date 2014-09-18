@@ -18,7 +18,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import videoannotation.fxml.LoaderClass;
+import videoannotation.fxml.FXMLResourceLoader;
 
 /**
  *
@@ -48,10 +48,10 @@ public class VideoAnnotationWindowController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         menuBar.prefWidthProperty().bind(anchorPane.widthProperty());
         try {
-            Parent player1 = FXMLLoader.load(LoaderClass.class.getResource("Player.fxml"));
+            Parent player1 = FXMLLoader.load(FXMLResourceLoader.class.getResource("Player.fxml"));
             playerArea.getChildren().add(player1);
 
-            Parent player2 = FXMLLoader.load(LoaderClass.class.getResource("Player.fxml"));
+            Parent player2 = FXMLLoader.load(FXMLResourceLoader.class.getResource("Player.fxml"));
             playerArea.getChildren().add(player2);
         } catch (IOException ex) {
             Logger.getLogger(VideoAnnotationWindowController.class.getName()).log(Level.SEVERE, null, ex);
@@ -64,7 +64,7 @@ public class VideoAnnotationWindowController implements Initializable {
         
         preferencesMenuItem.setOnAction((ActionEvent event) -> {
             try {
-                Parent parent = FXMLLoader.load(LoaderClass.class.getResource("PreferencesDialog.fxml"));
+                Parent parent = FXMLLoader.load(FXMLResourceLoader.class.getResource("PreferencesDialog.fxml"));
                 Scene scene = new Scene(parent);
                 Stage stage = new Stage();
                 stage.initModality(Modality.WINDOW_MODAL);

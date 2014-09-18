@@ -13,7 +13,7 @@ import javafx.scene.control.Button;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
-import resources.ResourceLoaderClass;
+import resources.ResourceLoader;
 
 /**
  *
@@ -41,7 +41,7 @@ public class PlayerController implements Initializable {
         Media media = null;
         
         try {
-            String toString = ResourceLoaderClass.class.getResource("barsandtone.flv").toURI().toString();
+            String toString = ResourceLoader.class.getResource("barsandtone.flv").toURI().toString();
             media = new Media(toString);
         } catch (URISyntaxException ex) {
             Logger.getLogger(PlayerController.class.getName()).log(Level.SEVERE, null, ex);

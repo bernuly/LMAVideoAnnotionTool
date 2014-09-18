@@ -10,6 +10,6 @@ package videoannotation.fxml;
  *
  * @author Ankit Gupta
  */
-public class LoaderClass {
+public class FXMLResourceLoader {
     
 }

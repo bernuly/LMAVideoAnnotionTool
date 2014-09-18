@@ -18,7 +18,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import javafx.stage.Window;
-import videoannotation.fxml.LoaderClass;
+import videoannotation.fxml.FXMLResourceLoader;
 
 /**
  *
@@ -55,7 +55,7 @@ public class PreferencesDialogController implements Initializable {
             public void changed(ObservableValue observable, Object oldValue, Object newValue) {
                 if (newValue.equals("Show/Hide")) {
                     try {
-                        Parent showHidePrefsPane = FXMLLoader.load(LoaderClass.class.getResource("ShowHidePrefs.fxml"));
+                        Parent showHidePrefsPane = FXMLLoader.load(FXMLResourceLoader.class.getResource("ShowHidePrefs.fxml"));
                         prefContainerPane.getChildren().remove(showHidePrefsPane);
                         prefContainerPane.getChildren().add(showHidePrefsPane);
                     } catch (IOException ex) {

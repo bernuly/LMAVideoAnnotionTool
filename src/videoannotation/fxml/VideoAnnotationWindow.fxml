@@ -26,9 +26,21 @@
       <VBox layoutY="27.0" prefHeight="375.0" prefWidth="600.0">
          <children>
             <HBox fx:id="playerArea" prefHeight="900.0" prefWidth="200.0" spacing="20.0" />
-            <HBox fx:id="questionArea" prefHeight="100.0">
+            <HBox fx:id="questionArea" minHeight="100.0" prefHeight="100.0">
                <children>
-                  <Label text="Put questionaaire here" />
+                  <StackPane fx:id="questionPane" prefHeight="150.0" prefWidth="200.0">
+                     <children>
+                        <Label fx:id="questionLabel" />
+                     </children>
+                  </StackPane>
+                  <VBox fx:id="answersBox" prefHeight="200.0" prefWidth="100.0" />
+                  <Pane prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <Button fx:id="nextBtn" layoutX="134.0" layoutY="61.0" mnemonicParsing="false" text="Next" />
+                        <Button fx:id="finishBtn" layoutX="74.0" layoutY="61.0" mnemonicParsing="false" text="Finish" />
+                        <Label fx:id="errorLabel" layoutX="19.0" layoutY="6.0" prefHeight="41.0" prefWidth="170.0" />
+                     </children>
+                  </Pane>
                </children>
             </HBox>
          </children>

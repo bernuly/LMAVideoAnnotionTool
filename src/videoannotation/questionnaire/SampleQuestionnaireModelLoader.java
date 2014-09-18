@@ -4,7 +4,7 @@ package videoannotation.questionnaire;
  *
  * @author Ankit Gupta
  */
-public class QuestionnaireModelLoader {
+public class SampleQuestionnaireModelLoader {
     
     public static QuestionnaireModel loadModel(){
         QuestionnaireModel model = new QuestionnaireModel();
@@ -13,8 +13,6 @@ public class QuestionnaireModelLoader {
         Answer a = newAnswer();
         Question q2 = newQuestion();
         
-        model.addQuestion(q1);
-        model.addQuestion(q2);
         model.addTransition(q1, a, q2);
         model.setFirstQuestion(q1);
         

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="videoannotation.preferences.PreferencesDialogController">
+   <children>
+      <SplitPane dividerPositions="0.29797979797979796" prefHeight="408.0" prefWidth="607.0">
+        <items>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+               <children>
+                  <ListView fx:id="prefList" layoutX="-5.0" layoutY="-5.0" prefHeight="408.0" prefWidth="192.0" />
+               </children>
+            </AnchorPane>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="406.0" prefWidth="370.0">
+               <children>
+                  <Button fx:id="applyBtn" layoutX="282.0" layoutY="367.0" mnemonicParsing="false" text="Apply" />
+                  <Button fx:id="closeBtn" layoutX="338.0" layoutY="367.0" mnemonicParsing="false" text="Close" />
+                  <StackPane fx:id="prefContainerPane" layoutY="6.0" prefHeight="353.0" prefWidth="416.0" />
+               </children></AnchorPane>
+        </items>
+      </SplitPane>
+   </children>
+</Pane>

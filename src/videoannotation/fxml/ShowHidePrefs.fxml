@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="videoannotation.preferences.HideShowPrefsController">
+   <children>
+      <Label layoutX="22.0" layoutY="21.0" text="Replay Interval" />
+      <Label layoutX="22.0" layoutY="53.0" text="Next Video Interval" />
+      <TextField fx:id="replayIntervalField" layoutX="151.0" layoutY="17.0" />
+      <TextField fx:id="nextVideoIntervalField" layoutX="151.0" layoutY="49.0" />
+      <Label layoutX="307.0" layoutY="21.0" text="milliseconds" />
+      <Label layoutX="307.0" layoutY="53.0" text="milliseconds" />
+   </children>
+</AnchorPane>

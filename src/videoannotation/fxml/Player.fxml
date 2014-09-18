@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.media.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox fx:id="playerContainer" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="videoannotation.controller.PlayerController">
+   <children>
+      <MediaView fx:id="mediaView" fitHeight="480.0" fitWidth="640.0" />
+      <HBox fx:id="controlBox" prefHeight="100.0" prefWidth="200.0" spacing="4.0">
+         <children>
+            <Button fx:id="playBtn" mnemonicParsing="false" text="Play" />
+            <Button fx:id="pauseBtn" mnemonicParsing="false" text="Pause" />
+            <Button fx:id="stopBtn" mnemonicParsing="false" text="Stop" />
+         </children>
+         <padding>
+            <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
+         </padding>
+      </HBox>
+   </children>
+</VBox>

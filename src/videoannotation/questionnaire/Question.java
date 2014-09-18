@@ -1,16 +1,16 @@
 package videoannotation.questionnaire;
 
-import java.util.Objects;
-
 /**
  *
  * @author Ankit Gupta
  */
 public class Question {
     private final String questionText;
+    private final long id;
     
-    public Question(String questionText){
+    public Question(long id, String questionText){
         this.questionText = questionText;
+        this.id = id;
     }
 
     public String getQuestionText() {
@@ -19,8 +19,8 @@ public class Question {
 
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 83 * hash + Objects.hashCode(this.questionText);
+        int hash = 7;
+        hash = 97 * hash + (int) (this.id ^ (this.id >>> 32));
         return hash;
     }
 
@@ -33,9 +33,13 @@ public class Question {
             return false;
         }
         final Question other = (Question) obj;
-        if (!Objects.equals(this.questionText, other.questionText)) {
+        if (this.id != other.id) {
             return false;
         }
         return true;
-    }    
+    }
+
+    public long getId() {
+        return id;
+    }
 }

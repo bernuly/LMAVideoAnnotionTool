@@ -12,7 +12,7 @@ import java.util.Set;
 public class QuestionnaireModel implements IQuestionnaireModel{
     
     private final Set<Question> questions = new HashSet<>();
-    private final Map<Transitiion, Question> transitionMap = new HashMap<>();
+    private final Map<Transition, Question> transitionMap = new HashMap<>();
     private final Map<Question, Set<Answer>> question2AnswerMap = new HashMap<>();
     private Question firstQuestion;
 
@@ -37,12 +37,12 @@ public class QuestionnaireModel implements IQuestionnaireModel{
             answers.add(a);
         }
         
-        transitionMap.put(new Transitiion(q1, a), q2);
+        transitionMap.put(new Transition(q1, a), q2);
     }
 
     @Override
     public Question getNextQuestion(Question q, Answer a) {
-        return transitionMap.get(new Transitiion(q, a));
+        return transitionMap.get(new Transition(q, a));
     }
 
     public Set<Question> getQuestions() {

@@ -131,8 +131,6 @@ public class VideoAnnotationWindowController implements Initializable {
             
             //save the choice
             submission.addChoice(currentQuestion.getId(), selectedAnswer.getId());
-            //remove the selected answer
-            selectedAnswer = null;
             
             //remove previous radio buttons
             answerButtons.stream().forEach((RadioButton r) -> {
@@ -141,6 +139,7 @@ public class VideoAnnotationWindowController implements Initializable {
             
             //get the next question
             currentQuestion = questionnaireModel.getNextQuestion(currentQuestion, selectedAnswer);
+            selectedAnswer = null;
 
             if(currentQuestion == null){
                 nextBtn.setVisible(false);

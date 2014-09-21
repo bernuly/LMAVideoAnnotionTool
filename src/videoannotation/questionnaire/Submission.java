@@ -1,23 +1,28 @@
 package videoannotation.questionnaire;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author Ankit Gupta
  */
 public class Submission {
-    
+
     private final long participantId;
     private final List<Choice> choices;
-    
-    public Submission(long participantId){
+
+    public Submission(long participantId) {
         this.participantId = participantId;
         this.choices = new ArrayList<>();
     }
-    
-    public void addChoice(long questionId, long answerId){
+
+    public void addChoice(long questionId, long answerId) {
         choices.add(new Choice(questionId, answerId));
     }
 
@@ -30,10 +35,23 @@ public class Submission {
     }
 
     public void save() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        PrintWriter pw = null;
+        try {
+            File sampleSubmissionFile = new File("submission.txt");
+            pw = new PrintWriter(sampleSubmissionFile);
+            pw.println("Question,Answer");
+            for (Choice c : choices) {
+                pw.println(c.questionId + "," + c.answerId);
+            }
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Submission.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            pw.close();
+        }
     }
-    
-    public class Choice{
+
+    public class Choice {
+
         private final long questionId;
         private final long answerId;
 

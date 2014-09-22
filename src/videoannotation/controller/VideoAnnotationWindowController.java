@@ -11,18 +11,24 @@ import java.util.logging.Logger;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckMenuItem;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.RadioMenuItem;
 import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -76,9 +82,22 @@ public class VideoAnnotationWindowController implements Initializable {
 
     @FXML
     private Button nextBtn;
-    
+
     @FXML
     private Label errorLabel;
+
+    @FXML
+    private RadioMenuItem debugMenuItem;
+
+    @FXML
+    private RadioMenuItem experimentMenuItem;
+
+    enum Mode {
+
+        DEBUG, EXPERIMENT
+    }
+
+    private Mode mode = Mode.DEBUG;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -124,28 +143,28 @@ public class VideoAnnotationWindowController implements Initializable {
 
         nextBtn.setOnAction((ActionEvent e) -> {
 
-            if(selectedAnswer == null){
+            if (selectedAnswer == null) {
                 errorLabel.setText("Please select an answer to continue");
                 return;
             }
-            
+
             //save the choice
             submission.addChoice(currentQuestion.getId(), selectedAnswer.getId());
-            
+
             //remove previous radio buttons
             answerButtons.stream().forEach((RadioButton r) -> {
                 answersBox.getChildren().remove(r);
             });
-            
+
             //get the next question
             currentQuestion = questionnaireModel.getNextQuestion(currentQuestion, selectedAnswer);
             selectedAnswer = null;
 
-            if(currentQuestion == null){
+            if (currentQuestion == null) {
                 nextBtn.setVisible(false);
                 questionLabel.setText("End of Questionnaire!");
                 finishBtn.setVisible(true);
-            }else{
+            } else {
                 questionLabel.setText(currentQuestion.getQuestionText());
                 final Set<Answer> nextAnswers = questionnaireModel.getAnswers(currentQuestion);
                 displayAnswers(nextAnswers);
@@ -154,6 +173,29 @@ public class VideoAnnotationWindowController implements Initializable {
 
         finishBtn.setOnAction((ActionEvent e) -> {
             submission.save();
+        });
+
+        ToggleGroup modeToggleGrp = new ToggleGroup();
+        debugMenuItem.setToggleGroup(modeToggleGrp);
+        debugMenuItem.setUserData(Mode.DEBUG);
+        experimentMenuItem.setToggleGroup(modeToggleGrp);
+        experimentMenuItem.setUserData(Mode.EXPERIMENT);
+        modeToggleGrp.selectedToggleProperty().addListener((ObservableValue<? extends Toggle> observable, Toggle oldValue, Toggle newValue) -> {
+            if (newValue != null) {
+                restart((Mode) newValue.getUserData());
+            }
+        });
+
+        anchorPane.addEventFilter(KeyEvent.KEY_PRESSED, (KeyEvent event) -> {
+            if (event.getCode() == KeyCode.ALT && mode == Mode.EXPERIMENT) {
+                menuBar.setVisible(true);
+            }
+        });
+
+        anchorPane.addEventFilter(KeyEvent.KEY_RELEASED, (KeyEvent event) -> {
+            if (event.getCode() == KeyCode.ALT && mode == Mode.EXPERIMENT) {
+                menuBar.setVisible(false);
+            }
         });
     }
 
@@ -175,5 +217,19 @@ public class VideoAnnotationWindowController implements Initializable {
             answerButtons.add(answerButton);
             answersBox.getChildren().add(answerButton);
         });
+    }
+
+    private void restart(Mode mode) {
+        switch (mode) {
+            case DEBUG:
+                this.mode = Mode.DEBUG;
+                menuBar.setVisible(true);
+
+                break;
+            case EXPERIMENT:
+                this.mode = Mode.EXPERIMENT;
+                menuBar.setVisible(false);
+                break;
+        }
     }
 }

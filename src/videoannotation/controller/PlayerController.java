@@ -8,15 +8,12 @@ import java.util.logging.Logger;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.media.Media;
-import javafx.scene.media.MediaMarkerEvent;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
-import javafx.util.Duration;
 import resources.ResourceLoader;
 
 /**
@@ -45,7 +42,7 @@ public class PlayerController implements Initializable {
         Media media = null;
         
         try {
-            String toString = ResourceLoader.class.getResource("output.flv").toURI().toString();
+            String toString = ResourceLoader.class.getResource("barsandtone.flv").toURI().toString();
             media = new Media(toString);
         } catch (URISyntaxException ex) {
             Logger.getLogger(PlayerController.class.getName()).log(Level.SEVERE, null, ex);

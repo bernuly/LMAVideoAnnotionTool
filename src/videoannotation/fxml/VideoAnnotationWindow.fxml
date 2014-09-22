@@ -21,6 +21,12 @@
               <MenuItem fx:id="preferencesMenuItem" mnemonicParsing="false" text="Preferences" />
             </items>
           </Menu>
+            <Menu mnemonicParsing="false" text="Mode">
+               <items>
+                  <RadioMenuItem fx:id="debugMenuItem" mnemonicParsing="false" text="Debug" />
+                  <RadioMenuItem fx:id="experimentMenuItem" mnemonicParsing="false" text="Experiment" />
+               </items>
+            </Menu>
         </menus>
       </MenuBar>
       <VBox layoutY="27.0" prefHeight="375.0" prefWidth="600.0">

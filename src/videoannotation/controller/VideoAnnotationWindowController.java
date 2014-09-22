@@ -11,14 +11,12 @@ import java.util.logging.Logger;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.CheckMenuItem;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
@@ -28,7 +26,6 @@ import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -45,7 +42,7 @@ import videoannotation.questionnaire.Submission;
  *
  * @author Ankit Gupta
  */
-public class VideoAnnotationWindowController implements Initializable {
+public class VideoAnnotationWindowController implements Initializable, Controller {
 
     private final IQuestionnaireModel questionnaireModel = SampleQuestionnaireModelLoader.loadModel();
     private Question currentQuestion = null;
@@ -92,6 +89,11 @@ public class VideoAnnotationWindowController implements Initializable {
     @FXML
     private RadioMenuItem experimentMenuItem;
 
+    @Override
+    public void modeChanged(Mode oldMode, Mode newMode) {
+        System.err.println("Mode Changed");
+    }
+
     enum Mode {
 
         DEBUG, EXPERIMENT
@@ -101,8 +103,10 @@ public class VideoAnnotationWindowController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        MainController.getInstance().registerController(this);
         submission = new Submission(0);
         finishBtn.setVisible(false);
+        debugMenuItem.setSelected(true);
         menuBar.prefWidthProperty().bind(anchorPane.widthProperty());
         try {
             Parent player1 = FXMLLoader.load(FXMLResourceLoader.class.getResource("Player.fxml"));
@@ -183,6 +187,7 @@ public class VideoAnnotationWindowController implements Initializable {
         modeToggleGrp.selectedToggleProperty().addListener((ObservableValue<? extends Toggle> observable, Toggle oldValue, Toggle newValue) -> {
             if (newValue != null) {
                 restart((Mode) newValue.getUserData());
+                MainController.getInstance().fireModeChange(oldValue == null ? null : (Mode) oldValue.getUserData(), (Mode) newValue.getUserData());
             }
         });
 

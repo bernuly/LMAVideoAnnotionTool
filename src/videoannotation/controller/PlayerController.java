@@ -11,6 +11,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.layout.HBox;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
@@ -20,7 +21,7 @@ import resources.ResourceLoader;
  *
  * @author Ankit Gupta
  */
-public class PlayerController implements Initializable {
+public class PlayerController implements Initializable, Controller {
 
     @FXML
     private MediaView mediaView;
@@ -33,11 +34,16 @@ public class PlayerController implements Initializable {
 
     @FXML
     private Button stopBtn;
+    
+    @FXML
+    private HBox controlBox;
 
     private int playCount = 0;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        
+        MainController.getInstance().registerController(this);
 
         Media media = null;
         
@@ -79,6 +85,18 @@ public class PlayerController implements Initializable {
                 player.play();
             }
         });
+    }
+
+    @Override
+    public void modeChanged(VideoAnnotationWindowController.Mode oldMode, VideoAnnotationWindowController.Mode newMode) {
+        switch(newMode){
+            case DEBUG:
+                controlBox.setVisible(true);
+                break;
+            case EXPERIMENT:
+                controlBox.setVisible(false);
+                break;
+        }
     }
 
 }

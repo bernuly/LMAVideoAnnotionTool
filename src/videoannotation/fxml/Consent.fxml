@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="videoannotation.controller.ConsentController">
+    <stylesheets>
+        <URL value="@consent.css" />
+    </stylesheets>
+   <children>
+      <Button fx:id="nextBtn" layoutX="545.0" layoutY="360.0" mnemonicParsing="false" text="Next" />
+      <TextArea layoutX="17.0" layoutY="32.0" prefHeight="321.0" prefWidth="566.0" />
+      <CheckBox layoutX="20.0" layoutY="364.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="510.0" text="I agree" />
+   </children>
+</AnchorPane>

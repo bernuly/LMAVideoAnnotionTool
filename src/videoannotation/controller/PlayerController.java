@@ -34,7 +34,7 @@ public class PlayerController implements Initializable, Controller {
 
     @FXML
     private Button stopBtn;
-    
+
     @FXML
     private HBox controlBox;
 
@@ -42,21 +42,21 @@ public class PlayerController implements Initializable, Controller {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        
+
         MainController.getInstance().registerController(this);
 
         Media media = null;
-        
+
         try {
-            String toString = ResourceLoader.class.getResource("barsandtone.flv").toURI().toString();
+            String toString = ResourceLoader.class.getResource("output1.mp4").toURI().toString();
             media = new Media(toString);
         } catch (URISyntaxException ex) {
             Logger.getLogger(PlayerController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         MediaPlayer player = new MediaPlayer(media);
         mediaView.setMediaPlayer(player);
-        
+
         player.statusProperty().addListener(new ChangeListener<MediaPlayer.Status>() {
 
             @Override
@@ -64,7 +64,7 @@ public class PlayerController implements Initializable, Controller {
                 System.out.println(oldValue + " --> " + newValue);
             }
         });
-        
+
         playBtn.setOnAction((ActionEvent event) -> {
             player.play();
         });
@@ -76,7 +76,7 @@ public class PlayerController implements Initializable, Controller {
         stopBtn.setOnAction((ActionEvent e) -> {
             player.stop();
         });
-                
+
         player.setOnEndOfMedia(() -> {
             System.out.println("End of media");
             playCount++;
@@ -89,7 +89,7 @@ public class PlayerController implements Initializable, Controller {
 
     @Override
     public void modeChanged(VideoAnnotationWindowController.Mode oldMode, VideoAnnotationWindowController.Mode newMode) {
-        switch(newMode){
+        switch (newMode) {
             case DEBUG:
                 controlBox.setVisible(true);
                 break;

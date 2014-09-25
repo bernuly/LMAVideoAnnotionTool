@@ -22,7 +22,7 @@ public class Submission {
         this.choices = new ArrayList<>();
     }
 
-    public void addChoice(long questionId, long answerId) {
+    public void addChoice(String questionId, String answerId) {
         choices.add(new Choice(questionId, answerId));
     }
 
@@ -52,20 +52,20 @@ public class Submission {
 
     public class Choice {
 
-        private final long questionId;
-        private final long answerId;
+        private final String questionId;
+        private final String answerId;
 
-        private Choice(long questionId, long answerId) {
+        private Choice(String questionId, String answerId) {
             this.questionId = questionId;
             this.answerId = answerId;
         }
 
-        public long getQuestionId() {
+        public String getQuestionId() {
             return questionId;
         }
 
-        public long getAnswerId() {
+        public String getAnswerId() {
             return answerId;
-        }
+        }        
     }
 }

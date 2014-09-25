@@ -1,14 +1,17 @@
 package videoannotation.questionnaire;
 
+import java.util.Objects;
+
 /**
  *
  * @author Ankit Gupta
  */
 public class Answer {
+
     private final String answerText;
-    private final long id;
-    
-    public Answer(long id, String answerText){
+    private final String id;
+
+    public Answer(String id, String answerText) {
         this.id = id;
         this.answerText = answerText;
     }
@@ -17,10 +20,15 @@ public class Answer {
         return answerText;
     }
 
+    public String getId() {
+        return id;
+    }
+
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 19 * hash + (int) (this.id ^ (this.id >>> 32));
+        int hash = 7;
+        hash = 97 * hash + Objects.hashCode(this.answerText);
+        hash = 97 * hash + Objects.hashCode(this.id);
         return hash;
     }
 
@@ -33,13 +41,13 @@ public class Answer {
             return false;
         }
         final Answer other = (Answer) obj;
-        if (this.id != other.id) {
+        if (!Objects.equals(this.answerText, other.answerText)) {
+            return false;
+        }
+        if (!Objects.equals(this.id, other.id)) {
             return false;
         }
         return true;
-    }   
-
-    public long getId() {
-        return id;
     }
+
 }

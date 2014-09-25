@@ -33,8 +33,10 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import videoannotation.fxml.FXMLResourceLoader;
 import videoannotation.questionnaire.Answer;
+import videoannotation.questionnaire.DBQuestionnaireModelLoader;
 import videoannotation.questionnaire.IQuestionnaireModel;
 import videoannotation.questionnaire.Question;
+import videoannotation.questionnaire.QuestionnaireModel;
 import videoannotation.questionnaire.SampleQuestionnaireModelLoader;
 import videoannotation.questionnaire.Submission;
 
@@ -44,7 +46,8 @@ import videoannotation.questionnaire.Submission;
  */
 public class VideoAnnotationWindowController implements Initializable, Controller {
 
-    private final IQuestionnaireModel questionnaireModel = SampleQuestionnaireModelLoader.loadModel();
+    //private final IQuestionnaireModel questionnaireModel = SampleQuestionnaireModelLoader.loadModel();
+    private final IQuestionnaireModel questionnaireModel = DBQuestionnaireModelLoader.loadQuestionnaireModel();
     private Question currentQuestion = null;
     private Answer selectedAnswer;
     private List<RadioButton> answerButtons = new ArrayList<RadioButton>();
@@ -164,7 +167,7 @@ public class VideoAnnotationWindowController implements Initializable, Controlle
             currentQuestion = questionnaireModel.getNextQuestion(currentQuestion, selectedAnswer);
             selectedAnswer = null;
 
-            if (currentQuestion == null) {
+            if (currentQuestion == QuestionnaireModel.NULL_QUESTION) {
                 nextBtn.setVisible(false);
                 questionLabel.setText("End of Questionnaire!");
                 finishBtn.setVisible(true);

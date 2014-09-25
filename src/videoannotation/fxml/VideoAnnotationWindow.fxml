@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import javafx.geometry.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
@@ -29,18 +30,21 @@
             </Menu>
         </menus>
       </MenuBar>
-      <VBox layoutY="27.0" prefHeight="375.0" prefWidth="600.0">
+      <VBox layoutY="27.0" prefHeight="375.0" prefWidth="1280.0">
          <children>
-            <HBox fx:id="playerArea" prefHeight="900.0" prefWidth="200.0" spacing="20.0" />
-            <HBox fx:id="questionArea" minHeight="100.0" prefHeight="100.0">
+            <HBox fx:id="playerArea" prefHeight="275.0" prefWidth="1048.0" spacing="20.0" />
+            <HBox fx:id="questionArea" minHeight="100.0" prefHeight="100.0" prefWidth="718.0">
                <children>
-                  <StackPane fx:id="questionPane" prefHeight="150.0" prefWidth="200.0">
+                  <StackPane fx:id="questionPane" prefHeight="100.0" prefWidth="604.0">
                      <children>
-                        <Label fx:id="questionLabel" />
+                        <Label fx:id="questionLabel" text="Style Test Label">
+                           <font>
+                              <Font name="Arial Bold" size="23.0" />
+                           </font></Label>
                      </children>
                   </StackPane>
-                  <VBox fx:id="answersBox" prefHeight="200.0" prefWidth="100.0" />
-                  <Pane prefHeight="200.0" prefWidth="200.0">
+                  <VBox fx:id="answersBox" prefHeight="100.0" prefWidth="421.0" />
+                  <Pane prefHeight="100.0" prefWidth="368.0">
                      <children>
                         <Button fx:id="nextBtn" layoutX="134.0" layoutY="61.0" mnemonicParsing="false" text="Next" />
                         <Button fx:id="finishBtn" layoutX="74.0" layoutY="61.0" mnemonicParsing="false" text="Finish" />

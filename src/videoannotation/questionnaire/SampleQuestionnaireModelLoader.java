@@ -19,28 +19,27 @@ public class SampleQuestionnaireModelLoader {
 
         Question changeQuestion = newQuestion("What kind of change?");
         model.addTransition(firstQuestion, yes, changeQuestion);
-        
+
         Answer phrasingAnswer = newAnswer("Phrasing");
         Question phrasingQuestion = newQuestion("What kind of phrasing change?");
         model.addTransition(changeQuestion, phrasingAnswer, phrasingQuestion);
-        
+
         Answer effortAnswer = newAnswer("Effort");
         Question effortQuestion = newQuestion("What kind of effort change?");
         model.addTransition(changeQuestion, effortAnswer, effortQuestion);
-        
+
         Answer spaceAnswer = newAnswer("Space");
         Question spaceQuestion = newQuestion("What kind of space change?");
         model.addTransition(changeQuestion, spaceAnswer, spaceQuestion);
-        
+
         Answer shapeAnswer = newAnswer("Shape");
         Question shapeQuestion = newQuestion("What kind of shape change?");
         model.addTransition(changeQuestion, shapeAnswer, shapeQuestion);
-        
+
         model.addTransition(phrasingQuestion, newAnswer("Impulsive"), null);
         model.addTransition(phrasingQuestion, newAnswer("Impactive"), null);
         model.addTransition(phrasingQuestion, newAnswer("Swing"), null);
-        
-        
+
         model.addTransition(effortQuestion, newAnswer("Light"), null);
         model.addTransition(effortQuestion, newAnswer("Strong"), null);
         model.addTransition(effortQuestion, newAnswer("Direct"), null);
@@ -49,14 +48,14 @@ public class SampleQuestionnaireModelLoader {
         model.addTransition(effortQuestion, newAnswer("Free"), null);
         model.addTransition(effortQuestion, newAnswer("Quick"), null);
         model.addTransition(effortQuestion, newAnswer("Sustained"), null);
-        
+
         Question reachSpaceQuestion = newQuestion("What kind of reach space?");
         Question zoneQuestion = newQuestion("What kind of zone?");
         Answer reachSpaceAnswer = newAnswer("Reach space");
         Answer zoneAnswer = newAnswer("Zone");
         model.addTransition(spaceQuestion, reachSpaceAnswer, reachSpaceQuestion);
         model.addTransition(spaceQuestion, zoneAnswer, zoneQuestion);
-        
+
         model.addTransition(reachSpaceQuestion, newAnswer("Near"), null);
         model.addTransition(reachSpaceQuestion, newAnswer("Mid"), null);
         model.addTransition(reachSpaceQuestion, newAnswer("Far"), null);
@@ -67,7 +66,7 @@ public class SampleQuestionnaireModelLoader {
         model.addTransition(zoneQuestion, newAnswer("Backward"), null);
         model.addTransition(zoneQuestion, newAnswer("Side-Open"), null);
         model.addTransition(zoneQuestion, newAnswer("Side-Across"), null);
-        
+
         model.addTransition(shapeQuestion, newAnswer("Rising"), null);
         model.addTransition(shapeQuestion, newAnswer("Sinking"), null);
         model.addTransition(shapeQuestion, newAnswer("Advancing"), null);
@@ -94,12 +93,12 @@ public class SampleQuestionnaireModelLoader {
 
         }
 
-        public static long currentId() {
-            return id;
+        public static String currentId() {
+            return "" + id;
         }
 
-        public static long nextId() {
-            return ++id;
+        public static String nextId() {
+            return "" + ++id;
         }
     }
 

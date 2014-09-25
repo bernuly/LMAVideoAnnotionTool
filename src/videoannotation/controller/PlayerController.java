@@ -48,7 +48,7 @@ public class PlayerController implements Initializable, Controller {
         Media media = null;
 
         try {
-            String toString = ResourceLoader.class.getResource("output1.mp4").toURI().toString();
+            String toString = ResourceLoader.class.getResource("sample.mp4").toURI().toString();
             media = new Media(toString);
         } catch (URISyntaxException ex) {
             Logger.getLogger(PlayerController.class.getName()).log(Level.SEVERE, null, ex);

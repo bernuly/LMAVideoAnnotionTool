@@ -19,8 +19,7 @@ repositories {
 dependencies {
     // The production code uses the SLF4J logging API at compile time
     compile 'org.slf4j:slf4j-api:1.7.5'
-
-    compile 'org.xerial:sqlite-jdbc:3.7.2'
+//    compile 'org.xerial:sqlite-jdbc:3.7.2'
     compile group: 'org.xerial', name:'sqlite-jdbc', version:'3.23.1'
 
     // Declare the dependency for your favourite test framework you want to use in your tests.
@@ -31,23 +30,22 @@ dependencies {
 }
 
 sourceSets{
-    main{
-        java{
-            srcDir 'src'
+    main {
+        java {
+            srcDirs = ['src']
         }
 
         resources{
-            srcDir 'src'
+            srcDirs = ['src']
         }
     }
 
-    test{
-        java{
-            srcDir 'test'
+    test {
+        java {
+            srcDirs = ['test']
         }
     }
 }
-
 
 
 
